@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8432e68f-6dad-440e-9235-0d88e3877725" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/TownHero/TownHero/templates/html/map.html" beforeDir="false" afterPath="$PROJECT_DIR$/TownHero/TownHero/templates/html/map.html" afterDir="false" />
-    </list>
+    <list default="true" id="8432e68f-6dad-440e-9235-0d88e3877725" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,8 +13,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/TownHero/TownHero/templates/html/map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="45">
-              <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+            <state relative-caret-position="240">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
             </state>
           </provider>
         </entry>
@@ -137,8 +135,8 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/TownHero/TownHero/templates/html/map.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="31" lean-forward="true" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
         </state>
       </provider>
     </entry>
