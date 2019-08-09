@@ -4,6 +4,16 @@
 
   function init() {
     navigator.geolocation.getCurrentPosition(function succes_func(position) {
+
+      // [TEST-01] 投稿表示テスト用配列 [日時, userID, 緯度, 経度, 投稿内容]
+      //           とりあえず投稿内容なども表示しているが，アクセス制限の観点からこの時点ではまだ受け取るべきじゃない感
+      var posts = [
+        ["20190807", "testUser01", 34.236312, 132.601736, "これは投稿表示テスト用1の文章です．藤三"],
+        ["20190808", "testUser02", 34.228246, 132.602541, "これは投稿表示テスト用2の文章です．阿賀端"],
+        ["20190809", "testUser03", 34.232259, 132.600007, "これは投稿表示テスト用3の文章です．高専陸上"]
+      ];
+      // [TEST-01]
+
       //取得したデータを整理
       var data = position.coords;
       //lat:緯度　lng:経度
@@ -40,22 +50,22 @@
       var gsipale = L.tileLayer('http://cyberjapandata.gsi.go.jp/xtyz/pale/{z}/{x}/{y}.png', {attribution: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'></a>"});
       //オープンストリートマップのタイル
       var osm = L.tileLayer('http://tile.openstreetmap.jp/{z}/{x}/{y}.png', {attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> "});
-      // OpenCycleMapのんタイル
-      var ocm = L.tileLayer('http://{s}.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png',{
-        attribution: '"OpenCycleMap" and "OpenStreetMap contributors"'
-      });
       //baseMapsオブジェクトのプロパティに3つのタイルを設定
       var baseMaps = {
         "地理院地図": gsi,
         "淡色地図": gsipale,
         "オープンストリートマップ": osm,
-        "OpenCycleMap": ocm
       };
       // layersコントロールにbaseMapsオブジェクトを設定して地図に追加
       // コントロール内にプロパティ名が表示される
       /* L.control.layers(baseMaps).addTo(map); */
-      ocm.addTo(map);
-      
+      osm.addTo(map);
+
+      // [TEST-01] 投稿表示機能 [日時, userID, 緯度, 経度, 投稿内容]
+      for (var i=0; i<posts.length; i++){
+        L.marker([posts[i][2], posts[i][3]],{icon: L.divIcon}).bindPopup(posts[i][0] + "\n" + posts[i][4]).addTo(map);
+      }
+      // [TEST-01]
       
       // 地図のclickイベントでonMapClick関数を呼び出し
       map.on('click', onMapClick);
@@ -90,4 +100,3 @@
     });
 
   }
-  //testです。あとで消します。
