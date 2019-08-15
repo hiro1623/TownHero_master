@@ -47,7 +47,6 @@ $(function(){
         "background-color": "rgba(150, 150, 150, 1.0)",
         "color": "#ffffff"
       });
-    
 
     // #post のStyleSheet
     } else if(hash === "#post"){

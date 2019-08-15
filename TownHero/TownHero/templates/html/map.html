@@ -42,6 +42,7 @@
         <h1>test_Map</h1>
       </div>
       <form action="#" method="post">
+      <form method="post" onsubmit="return getPostValue()">{% csrf_token %}
         <div id="post" class="app_body">
           <div class="area1">
             <button class="post_reset" type="reset">
@@ -61,7 +62,7 @@
           </div>
           <div class="area3">
             <p class="post_label">投稿本文</p>
-            <textarea class="post_input"></textarea>
+            <textarea class="post_input" name="message"></textarea>
           </div>
           <div class="area4">
             <p class="post_label">投稿写真</p>
@@ -125,5 +126,23 @@
     <!-- script -->
     <script src="{% static '/script/map.js' %}" ></script>
     <script type="text/javascript" src="{% static '/script/menu.js' %}"></script>
+    <script>
+      // 投稿の入力値取得 - 今回は試験的にjqueryを使用
+      function getPostValue(){
+        // 投稿属性: セレクトボックス
+        var postValue_purpose = $('#post [name=purpose]').val();
+        // 投稿本文: テキストボックス
+        if ($('#post [name=message]').val() == ""){
+          var postValue_text = "none";
+        } else {
+          var postValue_text = $('#post [name=message]').val();
+        }
+
+        console.log(postValue_purpose);
+        console.log(postValue_text);
+
+        return false;
+      }
+    </script>
   </body>
 </html>
