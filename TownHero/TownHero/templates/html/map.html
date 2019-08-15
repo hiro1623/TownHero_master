@@ -10,6 +10,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>towmhero_prototype</title>
 
@@ -40,28 +41,36 @@
       <div id="map" class="app_body">
         <h1>test_Map</h1>
       </div>
-      <div id="post" class="app_body">
-        <div class="area1">
-          <button class="post_reset" type="reset">
-            リセット
-          </button>
-          <button class="post_send" type="submit">
-            送信
-          </button>
+      <form action="#" method="post">
+        <div id="post" class="app_body">
+          <div class="area1">
+            <button class="post_reset" type="reset">
+              リセット
+            </button>
+            <button class="post_send" type="submit">
+              送信
+            </button>
+          </div>
+          <div class="area2">
+            <p class="post_label">投稿の属性</p>
+            <select class="post_input" name="purpose">
+              <option value="info">災害情報</option>
+              <option value="help">救助依頼</option>
+              <option value="lost">落としもの</option>
+            </select>
+          </div>
+          <div class="area3">
+            <p class="post_label">投稿本文</p>
+            <textarea class="post_input"></textarea>
+          </div>
+          <div class="area4">
+            <p class="post_label">投稿写真</p>
+            <input class="post_input" type="file" name="pic">
+          </div>
+          <div class="area5">area5: 位置情報設定
+          </div>
         </div>
-        <div class="area2">
-          <p>投稿の属性</p>
-          <form action="#" method="post"></form>
-        </div>
-        <div class="area3">area3: 投稿本文
-          <p>投稿の内容</p>
-
-        </div>
-        <div class="area4">area4: 投稿写真
-        </div>
-        <div class="area5">area5: 位置情報設定
-        </div>
-      </div>
+      </form>
       <div id="history" class="app_body">
         <h1>test_History</h1>
       </div>
