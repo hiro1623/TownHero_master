@@ -19,7 +19,7 @@
       var lat = data.latitude;
       var lng = data.longitude;
       var map = L.map('mapcontainer', {zoomControl: false});
-      var mpoint = [lat, lng]
+      var mpoint = [lat, lng];
       map.setView(mpoint, 15);
 
 
