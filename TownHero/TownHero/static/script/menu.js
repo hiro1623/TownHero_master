@@ -4,7 +4,7 @@ $(function(){
   // https://qiita.com/Sekky0905/items/598b47fea2106b8c140e
   var hashNames = ["#map", "#post", "#history",
                    "settinng", "help", "search"];
-  
+
   // 初期表示設定
   if (location.hash === ""){
     location.hash = "#map";
@@ -24,7 +24,7 @@ $(function(){
     displayPage(location.hash);
   })
 
-  
+
   // 表示用
   function clearPage(){
     $(".app_body").css({
@@ -37,7 +37,7 @@ $(function(){
       "background-color": "rgba(255, 255, 255, 0.0)",
       "color": "rgba(150, 150, 150, 1.0)"
     });
-    
+
     // #map のStyleSheet
     if(hash === "#map"){
       $(hash).css({
@@ -47,7 +47,7 @@ $(function(){
         "background-color": "rgba(150, 150, 150, 1.0)",
         "color": "#ffffff"
       });
-    
+
     // #post のStyleSheet
     } else if(hash === "#post"){
       $(hash).css({
@@ -67,6 +67,20 @@ $(function(){
         "background-color": "rgba(255, 255, 255, 0.8)",
         "font-size": "10px"
       });
+      $(".post_label").css({
+        "display": "inline-block",
+        "position": "absolute",
+        "width": "20%"
+      })
+      $(".post_input").css({
+        "display": "inline-block",
+        "position": "absolute",
+        "width": "70%",
+        "top": "0",
+        "bottom": "0",
+        "margin": "auto auto auto 20%"
+      });
+
       $(hash + ">.area1").css({
         "text-align": "left",
         "position": "relative",
@@ -103,7 +117,7 @@ $(function(){
         "letter-spacing": "0px",
         "color": "rgba(0,138,255,1.0)"
       });
-      
+
       $(hash + ">.area2").css({
         "position": "relative",
         "padding": "0px",
@@ -113,11 +127,7 @@ $(function(){
         "border-bottom-color": "rgba(0, 0, 0, 0.2)",
         "border-width": "1px"
       });
-      $(hash + ">.area2>p").css({
-        "position": "absolute",
-        "margin": "auto auto auto 0"
-      });
-      
+
       $(hash + ">.area3").css({
         "position": "relative",
         "width": "100%",
@@ -126,6 +136,13 @@ $(function(){
         "border-bottom-color": "rgba(0, 0, 0, 0.2)",
         "border-width": "1px"
       });
+      $("textarea.post_input").css({
+        "height": "70%",
+        "top": "0",
+        "bottom": "0",
+        "margin": "auto auto auto 20%"
+      });
+
       $(hash + ">.area4").css({
         "position": "relative",
         "width": "100%",
@@ -144,7 +161,7 @@ $(function(){
         "color": "#ffffff"
       });
     }
-    
+
     // #history のStyleSheet
     else if(hash === "#history"){
       $(hash).css({
@@ -167,7 +184,7 @@ $(function(){
         "background-color": "rgba(150, 150, 150, 1.0)",
         "color": "#ffffff"
       });
-      
+
     // #search のStyleSheet
     } else if(hash === "#search"){
       $(hash).css({
@@ -177,7 +194,7 @@ $(function(){
         "background-color": "rgba(150, 150, 150, 1.0)",
         "color": "#ffffff"
       });
-    
+
     // #setting のStyleSheet
     } else if(hash === "#setting"){
       $(hash).css({

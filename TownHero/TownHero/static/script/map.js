@@ -1,7 +1,3 @@
-// ultra unchi
-// super unchi
-// hyper unchi
-
   function init() {
     navigator.geolocation.getCurrentPosition(function succes_func(position) {
 
@@ -11,7 +7,9 @@
         ["20190807", "testUser01", 1, 34.236312, 132.601736, "これは投稿表示テスト用1の文章です．藤三"],
         ["20190808", "testUser02", 1, 34.228246, 132.602541, "これは投稿表示テスト用2の文章です．阿賀端"],
         ["20190809", "testUser03", 2, 34.232259, 132.600007, "これは投稿表示テスト用3の文章です．高専陸上"],
-        ["20190810", "testUser04", 1, 34.231081, 132.602176, "これは投稿表示テスト用4の文章です．活動拠点"]
+        ["20190810", "testUser04", 1, 34.231081, 132.602176, "これは投稿表示テスト用4の文章です．活動拠点"],
+        ["20190815", "testUser04", 1, 34.234539, 132.598192, "これは投稿表示テスト用4の文章です．大体三和ストア"],
+        ["20190815", "testUser04", 1, 34.229539, 132.608192, "これは投稿表示テスト用4の文章です．少年野球の場所"]
       ];
       // [TEST-01]
 
@@ -21,8 +19,8 @@
       var lat = data.latitude;
       var lng = data.longitude;
       var map = L.map('mapcontainer', {zoomControl: false});
-      var mpoint = [lat, lng]
-      map.setView(mpoint, 16);
+      var mpoint = [lat, lng];
+      map.setView(mpoint, 15);
 
 
       // マーカー表示
@@ -33,7 +31,7 @@
       });
       var circle = L.circle(mpoint,{
         className: "clCircle",
-        radius: 250,
+        radius: 500,
         weight: 5,
         color: "rgba(248, 181, 0, 1.0)",
         fillColor: "aqua",
@@ -64,7 +62,7 @@
 
       // [TEST-01] 投稿表示機能 [日時, userID, 属性, 緯度, 経度, 投稿内容]
       for (var i=0; i<posts.length; i++){
-        if (0.25 >= distance(lat, lng, posts[i][3], posts[i][4])){
+        if (0.50 >= distance(lat, lng, posts[i][3], posts[i][4])){
           L.marker([posts[i][3], posts[i][4]], {icon: L.divIcon({className: 'activeMarker'})}).bindPopup(posts[i][0] + "<br>" + posts[i][5]).addTo(map);
         } else {
           L.marker([posts[i][3], posts[i][4]], {icon: L.divIcon({className: 'deactiveMarker'})}).addTo(map);
