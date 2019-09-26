@@ -25,7 +25,7 @@ SECRET_KEY = '6k3u3k(2r(4j)75=3f-1dhx1wr!k5!**rm(8b1dp%&y@00ilyc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', 'rans-Macbook-Pro.local', '0.0.0.0', '127.0.0.1']
 
 
 # Application definition
@@ -37,8 +37,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sslserver',
     'map',
+    'users',
 ]
+
+AUTH_USER_MODEL = 'users.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
