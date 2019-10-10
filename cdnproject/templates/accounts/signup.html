@@ -1,0 +1,28 @@
+{% load static %}
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>TOWN HERO LOGIN</title>
+    <!-- stylesheet -->
+    <link rel="stylesheet" href="{% static '/css/signup.css' %}">
+  </head>
+
+  <body>
+    <!-- TOWN HEROのロゴマーク -->
+    <div class="logo">
+        <img id="logo_img" src="{% static '/images/logo_white.png' %}">
+      </div>
+
+    <!-- ログイン入力フォーム -->
+    <div class="inputForm">
+      <section class="common-form">
+          <form method="post">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <button type="submit" class="submit">Sign up</button>
+          </form>
+      </section>
+    </div>
+  </body>
+  
