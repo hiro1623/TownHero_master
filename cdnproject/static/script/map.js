@@ -1,5 +1,7 @@
-function init() {
+function main() {
+    test = 10;
     navigator.geolocation.getCurrentPosition(function succes_func(position) {
+
             var posts = [
                 ["20190807", "testUser01", 1, 34.236312, 132.601736, "これは投稿表示テスト用1の文章です．藤三"],
                 ["20190808", "testUser02", 1, 34.228246, 132.602541, "これは投稿表示テスト用2の文章です．阿賀端"],
@@ -17,7 +19,7 @@ function init() {
             var lng = data.longitude;
             var mpoint = [lat, lng];
             // 地図表示
-            var osm = L.tileLayer('http://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
+            var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
 
             var map = L.map('mapcontainer', {
                 layers: [osm],
@@ -52,8 +54,9 @@ function init() {
             for (var i = 0; i < posts.length; i++) {
                 if (0.50 >= distance(lat, lng, posts[i][3], posts[i][4])) {
                     L.marker([posts[i][3], posts[i][4]], { icon: L.divIcon({ className: 'activeMarker' }) }).bindPopup(posts[i][0] + "<br>" + posts[i][5]).addTo(map);
+
                 } else {
-                    L.marker([posts[i][3], posts[i][4]], { icon: L.divIcon({ className: 'deactiveMarker' }) }).addTo(this.map);
+                    L.marker([posts[i][3], posts[i][4]], { icon: L.divIcon({ className: 'deactiveMarker' }) }).addTo(map);
                 }
             } // [TEST-01]
 

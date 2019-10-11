@@ -275,6 +275,7 @@ textarea.post_input {
 
 #history {
     overflow: auto;
+    height: 50vw;
 }
 
 .histBox {
