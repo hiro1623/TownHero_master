@@ -1,21 +1,9 @@
-{% if form.errors %}
-<p class="error_message">パスワードか名前が一致しません。</p>
-{% endif %}
- 
-{% if next %}
-    {% if user.is_authenticated %}
-    <p>Your account doesn't have access to this page. To proceed,
-    please login with an account that has access.</p>
-    {% else %}
-    <p>Please login to see this page.</p>
-    {% endif %}
-{% endif %}
-
 {% load static %}
 <html>
   <head>
     <meta charset="UTF-8">
     <title>TOWN HERO LOGIN</title>
+    <!--
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <script>　// スマートフォンフルスクリーンモード解除対策
@@ -23,13 +11,13 @@
           var aTags = $('a');
           aTags.each(function(){ 
               var url = $(this).attr('href');
-      　　 　   $(this).removeAttr('href');
+     　　 　   $(this).removeAttr('href');
               $(this).click(function(){
                   location.href = url;
               });
           });
       });
-    </script>
+    </script>-->
     <!-- stylesheet -->
     <link rel="stylesheet" href="{% static '/css/login.css' %}">
   </head>
@@ -39,11 +27,24 @@
     <div class="logo">
       <img id="logo_img" src="{% static '/images/logo_white.png' %}">
     </div>
+      <p class="page">LOG IN</p>
+    
 
     <!-- ログイン入力フォーム -->
     <div class="inputForm">
+      {% if form.errors %}
+      <p class="error_message">パスワードか名前が一致しません</p>
+      {% endif %}
+      {% if next %}
+          {% if user.is_authenticated %}
+          <p class="error_message">ログイン後に指定のページを閲覧できます</p>
+          {% else %}
+          <p class="error_message">ログイン後に指定のページを閲覧できます</p>
+          {% endif %}
+      {% endif %}
       <form method="post" action="{% url 'login' %}">
         {% csrf_token %}
+        <!--
         <table>
           <tr>
             <td>{{ form.username.label_tag }}</td>
@@ -53,10 +54,15 @@
             <td>{{ form.password.label_tag }}</td>
             <td>{{ form.password }}</td>
           </tr>
-        </table>
- 
-        <input type="submit" value="login" />
-        <input type="hidden" name="next" value="{{ next }}" />
+        </table>-->
+        <div class="post_form">
+          <input type="text" name="username" placeholder="ユーザー名" auto focus required id="id_username">
+          <input type="password" name="password" placeholder="パスワード" required id="id_password">
+        </div>
+        <div class="post_submit">
+          <input type="submit" value="ログイン" />
+          <input type="hidden" name="next" value="{{ next }}" />
+        </div>
       </form>
     </div>
 
