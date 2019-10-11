@@ -20,6 +20,7 @@ function main() {
             var mpoint = [lat, lng];
             // 地図表示
             var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
+            // var osm = L.tileLayer('/static/osm/{z}/{x}/{y}.png');
 
             var map = L.map('mapcontainer', {
                 layers: [osm],
