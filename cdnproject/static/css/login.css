@@ -46,6 +46,7 @@ div.inputForm {
   flex-direction: column;
 }
 div.inputForm .post_form {
+  margin: 10px;
   display: block;
   width: 55vw;
 }

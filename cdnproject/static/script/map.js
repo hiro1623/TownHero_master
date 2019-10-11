@@ -19,8 +19,8 @@ function main() {
             var lng = data.longitude;
             var mpoint = [lat, lng];
             // 地図表示
-            var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
-            // var osm = L.tileLayer('/static/osm/{z}/{x}/{y}.png');
+            // var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
+            var osm = L.tileLayer('/static/osm/{z}/{x}/{y}.png');
 
             var map = L.map('mapcontainer', {
                 layers: [osm],
@@ -32,17 +32,18 @@ function main() {
 
             // マーカー表示
             var pulsingIcon = L.icon.pulse({
-                iconColor: '#87cefa',
+                iconColor: 'rgba(248, 181, 0, 1.0)',
                 iconSize: [20, 20],
-                color: '#87cefa'
+                color: 'rgba(248, 181, 0, 1.0)',
+                border: '3px'
             });
             var circle = L.circle(mpoint, {
                 className: "clCircle",
                 radius: 500,
-                weight: 5,
+                weight: 6,
                 color: "rgba(248, 181, 0, 1.0)",
-                fillColor: "aqua",
-                fillOpacity: 0.1
+                fillColor: "white",
+                fillOpacity: 0.3
             }).addTo(map);
 
 

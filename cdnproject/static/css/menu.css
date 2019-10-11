@@ -77,34 +77,30 @@ header {
     position: fixed;
     z-index: 2;
 }
-
 .menu_btn {
     position: relative;
     color: rgba(50, 50, 50, 1);
-    font-size: 1px;
+    font-size: 10px;
     display: inline-block;
     background-color: rgba(1, 1, 1, 0);
     text-align: center;
     left: 5%;
-    width: 10%;
+    width: 13%;
     height: 100%;
     cursor: pointer;
     border-style: none;
 }
-
 .menu_btn_selected {
     color: #ffffff;
     background-color: rgba(150, 150, 150, 1.0);
 }
-
 .menu_btn_nonselect img {
     -webkit-filter: brightness(50%);
     filter: brightness(50%);
 }
-
 .menu_icon {
     display: inline-block;
-    position: left;
+    position: center;
     width: 25px;
     height: 25px;
 }
