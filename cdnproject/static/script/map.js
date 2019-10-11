@@ -1,8 +1,5 @@
 function init() {
     navigator.geolocation.getCurrentPosition(function succes_func(position) {
-
-            // [TEST-01] 投稿表示テスト用配列 [日時, 投稿属性, userID, 緯度, 経度, 投稿内容]
-            //           とりあえず投稿内容なども表示しているが，アクセス制限の観点からこの時点ではまだ受け取るべきじゃない感
             var posts = [
                 ["20190807", "testUser01", 1, 34.236312, 132.601736, "これは投稿表示テスト用1の文章です．藤三"],
                 ["20190808", "testUser02", 1, 34.228246, 132.602541, "これは投稿表示テスト用2の文章です．阿賀端"],
@@ -18,10 +15,16 @@ function init() {
             //lat:緯度　lng:経度
             var lat = data.latitude;
             var lng = data.longitude;
-
-            var map = L.map('mapcontainer', { zoomControl: false });
             var mpoint = [lat, lng];
-            map.setView(mpoint, 15);
+            // 地図表示
+            var osm = L.tileLayer('http://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
+
+            var map = L.map('mapcontainer', {
+                layers: [osm],
+                center: [lat, lng],
+                zoom: 15,
+                zoomControl: false
+            });
 
 
             // マーカー表示
@@ -38,37 +41,19 @@ function init() {
                 fillColor: "aqua",
                 fillOpacity: 0.1
             }).addTo(map);
+
+
             L.marker(mpoint, { icon: pulsingIcon }).addTo(map);
-            //L.control.scale({maxWidth: 200, position: 'bottomright', imperial: false}).addTo(map);
-            //L.control.zoom({position: 'bottomleft'}).addTo(map);
 
+            //L.simpleMapScreenshoter().addTo(map)
 
-            // 地図表示
-            //地理院地図の標準地図タイル
-            var gsi = L.tileLayer('https://cyberjapandata.gsi.go.jp/xyz/std/{z}/{x}/{y}.png', { attribution: "<a href='https://maps.gsi.go.jp/development/ichiran.html' target='_blank'></a>" });
-            //地理院地図の淡色地図タイル
-            var gsipale = L.tileLayer('http://cyberjapandata.gsi.go.jp/xtyz/pale/{z}/{x}/{y}.png', { attribution: "<a href='http://portal.cyberjapan.jp/help/termsofuse.html' target='_blank'></a>" });
-            //オープンストリートマップのタイル
-            var osm = L.tileLayer('http://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
-            //baseMapsオブジェクトのプロパティに3つのタイルを設定
-            var baseMaps = {
-                "地理院地図": gsi,
-                "淡色地図": gsipale,
-                "オープンストリートマップ": osm,
-            };
-
-
-            // layersコントロールにbaseMapsオブジェクトを設定して地図に追加
-            // コントロール内にプロパティ名が表示される
-            /* L.control.layers(baseMaps).addTo(map); */
-            osm.addTo(map);
 
             // [TEST-01] 投稿表示機能 [日時, userID, 属性, 緯度, 経度, 投稿内容]
             for (var i = 0; i < posts.length; i++) {
                 if (0.50 >= distance(lat, lng, posts[i][3], posts[i][4])) {
                     L.marker([posts[i][3], posts[i][4]], { icon: L.divIcon({ className: 'activeMarker' }) }).bindPopup(posts[i][0] + "<br>" + posts[i][5]).addTo(map);
                 } else {
-                    L.marker([posts[i][3], posts[i][4]], { icon: L.divIcon({ className: 'deactiveMarker' }) }).addTo(map);
+                    L.marker([posts[i][3], posts[i][4]], { icon: L.divIcon({ className: 'deactiveMarker' }) }).addTo(this.map);
                 }
             } // [TEST-01]
 

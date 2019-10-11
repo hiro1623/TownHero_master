@@ -25,7 +25,7 @@ SECRET_KEY = '6d0&br-^3t$y_(1p%c$q5#q-^b((9mo6_hyups@*s*svw@j*t@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["hiro.local","127.0.0.1"]
 
 
 # Application definition

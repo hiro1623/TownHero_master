@@ -1,43 +1,54 @@
 /***** map.css *****/
-html{
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
+
+html {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }
-body{
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  height: 100%;
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
 }
+
 #mapcontainer {
     z-index: 0;
     width: 100%;
     opacity: 1;
-  }
-  .clCircle {
-    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
-  }
+}
 
-  header {
+#result {
+    z-index: 10;
+    width: 50%;
+}
+
+.clCircle {
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+header {
     width: 100%;
-    height : 20vw;
-  
-  }
-  #vueEvent > .loading {
+    height: 20vw;
+}
+
+#vueEvent>.loading {
     height: 100%;
-  }
-  #vueEvent > .loading > img{
+}
+
+#vueEvent>.loading>img {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
     margin: auto;
-    height :20%;
-  }
-  div > .activeMarker {
+    height: 20%;
+}
+
+div>.activeMarker {
     width: 20px !important;
     height: 20px !important;
     margin: -10px !important;
@@ -46,9 +57,9 @@ body{
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     background-color: rgba(37, 142, 255, 1);
     z-index: 20 !important;
-  }
+}
 
-  div > .deactiveMarker {
+div>.deactiveMarker {
     width: 20px !important;
     height: 20px !important;
     margin: -10px !important;
@@ -57,36 +68,36 @@ body{
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
     background-color: rgba(130, 130, 130, 1);
     z-index: 20 !important;
-  }
-
-
-div#vueEvent{
-  width: 100%;
-  height: 100%;
 }
+
+div#vueEvent {
+    width: 100%;
+    height: 100%;
+}
+
 .leaflet-popup-content-wrapper,
 .leaflet-popup-tip {
-  background: black;
-  border-color: orange;
+    background: black;
+    border-color: orange;
 }
 
 .leaflet-popup-content,
 a.leaflet-popup-close-button {
-  color: orange !important;
-  font: bold 14pt monospace;
+    color: orange !important;
+    font: bold 14pt monospace;
 }
 
 .leaflet-popup-content-wrapper {
-  border-width: 3px;
-  border-style: solid;
+    border-width: 3px;
+    border-style: solid;
 }
 
 .leaflet-popup-tip-container {
-  margin-top: -3px;
-  height: 23px;
+    margin-top: -3px;
+    height: 23px;
 }
 
 .leaflet-popup-tip {
-  border-style: solid;
-  border-width: 0 3px 3px 0;
+    border-style: solid;
+    border-width: 0 3px 3px 0;
 }

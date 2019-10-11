@@ -106,8 +106,8 @@
                 <div class="histBox">
                     <!--投稿練習用-->
                     {% for post in posts %} {%if user.get_username == post.user.username %}
-                    <p>{{ post.purpose }} : {{ post.message }}: {{post.user.username}}: {{user.get_username}}</p>
-                    {%endif%}
+                    <p>No.{{ post.id}}:{{ post.purpose }} {{ post.message }}</p>
+                    <button v-on:click="deletePost({{post.id}})">投稿の削除</button> {%endif%}
                     <img src="{{post.pic}}" /> {% endfor %}
                     <!-- ここまで -->
                 </div>
@@ -161,6 +161,7 @@
         data: {
             contentActive: 'map',
             contentsLoaded: false,
+            id: 29,
         },
         mounted: function() {
             axios
@@ -197,6 +198,25 @@
                             alert(error)
                         })
                 });
+
+            },
+            deletePost: function(id) {
+                var csrftoken = Cookies.get('csrftoken');
+                var headers = {
+                    'X-CSRFToken': csrftoken
+                };
+                var data = {
+                    "id": contents.id = id,
+                };
+                axios
+                    .post("{% url 'mapApp:delete' %} ", data, {
+                        headers: headers
+                    })
+                    .then(respose => {})
+                    .catch(error => {
+                        alert(error)
+                    })
+                location.reload();
             }
 
         }
