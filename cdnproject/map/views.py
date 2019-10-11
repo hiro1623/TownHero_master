@@ -7,12 +7,19 @@ from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from . import models
+from django.contrib.auth.models import User
+
 
 @login_required
 def map_TownHero(request):
     #練習用
     if request.method == 'POST':
-        models.PostData.objects.create(purpose=request.POST["purpose"],message=request.POST["message"])
+        models.PostData.objects.create(
+            purpose=request.POST["purpose"],
+            message=request.POST["message"],
+            pic=request.POST["pic"],
+            user=request.user
+        )
   
     context = {"posts":models.PostData.objects.all()}
     #ここまで
