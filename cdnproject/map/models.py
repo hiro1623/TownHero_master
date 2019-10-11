@@ -3,17 +3,21 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class PostData(models.Model):
-    #POST_CHOICE = (
-    #    ('0','テストだよ'),
-    #    ('1','テスト２号だよ')
-    #)
-    #purpose = models.CharField(
-    #    max_length=10,
-    #    choices=POST_CHOICE
-    #)
-    purpose = models.CharField(max_length=32)
+    POST_CHOICE = (
+        ('0','テストだよ'),
+        ('1','テスト２号だよ')
+    )
+    purpose = models.CharField(
+        max_length=10,
+        choices=POST_CHOICE
+    )
+    #purpose = models.CharField(max_length=32)
     message = models.TextField()
-    pic = models.ImageField(upload_to='photo')
+    #pic = models.ImageField(upload_to='photo')
+    pic = models.ImageField(
+        upload_to='polls',
+        verbose_name='添付ファイル',
+    )
     posted_at = models.DateTimeField(auto_now_add=True)
     last_modify = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,verbose_name='ユーザー',on_delete=models.CASCADE)

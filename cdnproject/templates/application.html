@@ -56,30 +56,34 @@
 
             <!-- app body -->
 
-            <form method="post" onsubmit="return getPostValue()">
-                {% csrf_token %}
+            <!--<form method="post" onsubmit="return getPostValue()">-->
+            <form action="{% url 'mapApp:map_TownHero' %}"  method = "post" enctype="multipart/form-data">
                 <div id="post" class="app_body" v-show="contentActive === 'post'">
                     <div class="area1">
                         <button class="post_reset" type="reset">リセット</button>
                         <button v-on:click="getGeo" class="post_send" type="submit">送信</button>
                     </div>
-
+                    {% csrf_token %}
+                    {{form.as_p}}
                     <div class="area2">
-                        <p class="post_label">投稿の属性</p>
+                    <!--    <p class="post_label">投稿の属性</p>
+                        <p class="post_input">
                         <select class="post_input" name="purpose">
-            <option value="災害情報">災害情報</option>
-            <option value="救助依頼">救助依頼</option>
-            <option value="落とし物">落としもの{{username.get}}</option>
-          </select>
+                            <option value="災害情報">災害情報</option>
+                            <option value="救助依頼">救助依頼</option>
+                            <option value="落とし物">落としもの{{username.get}}</option>
+                        </select>-->
+                        
                     </div>
                     <div class="area3">
-                        <p class="post_label">投稿本文
-                        </p>
-                        <textarea class="post_input" name="message"></textarea>
+                        <p class="post_label">投稿本文</p>
+                        <!--<textarea class="post_input" name="message"></textarea>-->
+                        <!--{{ form.message }}-->
                     </div>
                     <div class="area4">
                         <p class="post_label">投稿写真</p>
-                        <input class="post_input" type="file" name="pic" />
+                        <!--<input class="post_input" type="file" name="pic" />-->
+                        <!--{{ form.pic }}-->
                     </div>
                     <div class="area5">位置情報設定</div>
                 </div>
