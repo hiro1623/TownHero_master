@@ -1,6 +1,8 @@
 from django.conf.urls import url
+from django.urls import path
 from . import views
-app_name = "TownHero"
+app_name = "mapApp"
 urlpatterns = [
-    url(r'^$', views.hello_TownHero, name='hello_TownHero'),
+    path('', views.map_TownHero, name='map_TownHero'),
+    path('geo/', views.geo, name='geo'),
 ]
