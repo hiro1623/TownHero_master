@@ -295,11 +295,19 @@ textarea.post_input {
 }
 
 #history {
+    position: absolute;
+    width: 85%;
+    height: 75%;
+    top: 50px;
+    right: 0;
+    left: 0;
+    margin: auto;
     overflow: auto;
     height: 50vw;
 }
 
 .histBox {
+    max-width: 100%;
     width: 100%;
     height: auto;
     max-height: 30%;
@@ -310,32 +318,7 @@ textarea.post_input {
     z-index: 0;
 }
 
-.histBox_cont {
-    display: inline-block;
-    width: 65%;
-}
-
-.histBox_cont_date {
-    display: block;
-    font-size: 20px;
-}
-
-.histBox_cont_msg {
-    display: block;
-    font-size: 12px;
-}
-
-.histBox_attr {
-    display: inline-block;
-    width: 30%;
-    text-align: center;
-}
-
-.histBox_attr_pin {
-    display: inline-block;
-}
-
-.histBox_attr_text {
-    display: block;
-    font-size: 12px;
+.histBox img {
+    width: auto;
+    max-height: 150px;
 }
