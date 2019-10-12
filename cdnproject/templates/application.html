@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <script>　// スマートフォンフルスクリーンモード解除対策
@@ -20,7 +19,7 @@
               });
           });
       });
-    </script>-->
+    </script>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>Django Vue Integration</title>
     <!-- API -->
@@ -38,7 +37,8 @@
     </script>
     <!-- script -->
     <script src="{% static '/script/map.js' %}"></script>
-    <script src="{% static '/script/minimap.js' %}"></script>
+    <!--<script src="{% static '/script/minimap.js' %}"></script>-->
+    <script src="{% static '/script/postmap.js' %}"></script>
     <script src="{% static '/script/leaflet-simple-map-screenshoter.js' %}"></script>
     <!-- stylesheet-->
     <link rel="stylesheet" href="{% static '/css/menu.css'%}">
@@ -66,10 +66,9 @@
 
                 <!-- 上部menu表示部 ver.Hiro -->
                 <div class="menu_top">
-
                     <button type="button" v-on:click="contentActive = 'setting'">
-          <i class="fas fa-cogs"></i>
-        </button>
+                        <i class="fas fa-cogs"></i>
+                    </button>
                 </div>
 
             </header>
@@ -102,9 +101,14 @@
                         <input class="post_input" type="file" name="pic" />
                     </div>
                     <div class="area5">
-                        <div id="mapsScreeningState"></div>
+                        <p class="post_label_wide">位置情報</p>
+                        <div class="post_deteal">
+                            <p>投稿場所はここであっていますか？<br>変更したい場合は地図をタップしてください</p>
+                        </div>
+                        <div id="minimap"></div>
+                        <!-- <div id="mapsScreeningState"></div>
                         <div class="maps">
-                            <div>
+                            <div>hist
                                 <div id="mapSimple"></div>
                             </div>
                             <div>
@@ -113,7 +117,7 @@
                                 <button id="screenMapAndPast">Take screen and past to body</button>
                                 <div id="screens"></div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
@@ -173,7 +177,7 @@
  Released under the MIT License.-->
 <script src="{% static '/script/vue.js' %} "></script>
 <script>
-    alert(test)
+    alert(test);
     var contents = new Vue({
         el: '#vueEvent',
         data: {
@@ -183,7 +187,7 @@
         },
         mounted: function() {
             axios
-                .get('http://127.0.0.1:8000/map/')
+                .get('http://127.0.0.1:443/map/')
 
             .then(function(response) {
                     contents.contentsLoaded = true
