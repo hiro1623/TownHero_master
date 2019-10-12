@@ -1,8 +1,6 @@
 function main() {
     navigator.geolocation.getCurrentPosition(function succes_func(position) {
 
-            
-
             //取得したデータを整理
             var data = position.coords;
             //lat:緯度　lng:経度
@@ -10,12 +8,14 @@ function main() {
             var lng = data.longitude;
             var mpoint = [lat, lng];
             // 地図表示
-            var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
-            //var osm = L.tileLayer('/static/osm/{z}/{x}/{y}.png');
+            // var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
+            var osm = L.tileLayer('/static/osm/{z}/{x}/{y}.png');
 
             var map = L.map('mapcontainer', {
                 layers: [osm],
                 center: [lat, lng],
+                maxZoom: 15,
+                minZoom: 15,
                 zoom: 15,
                 zoomControl: false
             });
@@ -51,7 +51,7 @@ function main() {
                     }else if(posted_data[i].purpose == '災害情報'){
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({ iconUrl: '/static/images/pin/pin_blue.png', iconSize: [55,55], iconAnchor: [27,55], popupAnchor: [0,-35] }) }).bindPopup(posts[i][0] + "<br>" + posts[i][5]).addTo(map);
                     }else if(posted_data[i].purpose == '落とし物')
-                    {   
+                    {
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({ iconUrl: '/static/images/pin/pin_green.png', iconSize: [55,55], iconAnchor: [27,55], popupAnchor: [0,-35] }) }).bindPopup(posts[i][0] + "<br>" + posts[i][5]).addTo(map);
                     }else if(posted_data[i].purpose == '人探し'){
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({ iconUrl: '/static/images/pin/pin_yellow.png', shadowUrl: '/static/images/pin/pin_shadow.png', iconSize: [55,55], shadowSize:[55,55], iconAnchor: [27,55], popupAnchor: [0,-35] }) }).bindPopup(posts[i][0] + "<br>" + posts[i][5]).addTo(map);
