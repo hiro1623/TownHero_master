@@ -4,8 +4,11 @@ from .models import PostData
 from django.contrib.auth.models import User
 
 POST_CHOICE = (
-    ('0','テストだよ'),
-    ('1','テスト２号だよ')
+    ('SOS','SOS'),
+    ('災害情報','災害情報'),
+    ('落し物','落し物'),
+    ('人探し','人探し'),
+    ('その他','その他'),
 )
 class PostingForm(forms.Form):
 

@@ -73,23 +73,28 @@
 
                     <div class="area2">
                         <p class="post_label">投稿の属性</p>
+                        <p class="post_input">
+                            {{forms.purpose}}
+                        </p>
                         <!--<select class="post_input" name="purpose">
                             <option value="災害情報">災害情報</option>
             <option value="救助依頼">救助依頼</option>
             <option value="落とし物">落としもの{{username.get}}</option>
           </select>-->
-                        {{forms.purpose}}
                     </div>
                     <div class="area3">
-                        <p class="post_label">投稿本文
+                        <p class="post_label">投稿本文</p>
+                        <p class="post_input">
+                            {{forms.message}}
                         </p>
                         <!--<textarea class="post_input" name="message"></textarea>-->
-                        {{forms.message}}
                     </div>
                     <div class="area4">
                         <p class="post_label">投稿写真</p>
                         <!--<input class="post_input" type="file" name="pic" />-->
-                        {{forms.pic}}
+                        <p class="post_input">
+                            {{forms.pic}}
+                        </p>
                     </div>
                     <div class="area5">
                         <div id="mapsScreeningState"></div>
@@ -115,7 +120,7 @@
                     {% for post in posts %} {%if user.get_username == post.user.username %}
                     <p>No.{{ post.id}}:{{ post.purpose }} {{ post.message }}{{ post.user.username }}</p>
                     <button v-on:click="deletePost({{post.id}})">投稿の削除</button> 
-                    <img src="{{post.pic.url}}" /> 
+                    <img src="{{post.pic.url}}" width=auto height="150"/> 
                     {%endif%}
                     {% endfor %}
                     <!-- ここまで -->
