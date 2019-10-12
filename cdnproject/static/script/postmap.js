@@ -13,4 +13,4 @@ navigator.geolocation.getCurrentPosition(function succes_func(position) {
     zoom: 16,
     zoomControl: false
   });
-}
+});

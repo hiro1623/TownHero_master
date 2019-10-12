@@ -9,6 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <script>　// スマートフォンフルスクリーンモード解除対策
+    /*
       $(function(){
           var aTags = $('a');
           aTags.each(function(){ 
@@ -18,7 +19,31 @@
                   location.href = url;
               });
           });
-      });
+      });*/
+    </script>
+    <!--Global values-->
+    <script>
+        var posted_data = [
+        {% for locate in location %}
+        {% if not forloop.first %},{% endif %}
+        {
+            id: {{locate.id}},
+            lat: {{ locate.lat }},
+            lng: {{ locate.lng }},
+            purpose: "",
+            message: "",
+            post_time: "",
+        }
+        {% endfor %}
+    ];
+
+    
+    {% for post in posts %}
+        posted_data[{{post.id}}-1].purpose='{{post.purpose}}';
+        posted_data[{{post.id}}-1].message='{{post.message}}';
+        posted_data[{{post.id}}-1].post_time='{{post.post_time}}';
+        console.log(posted_data[{{post.id}}-1]);
+    {%endfor%}
     </script>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>Django Vue Integration</title>
@@ -31,10 +56,7 @@
     <link rel="stylesheet" href="{% static '/api/L.Icon.Pulse.leaflet-control-layers-separator' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="">
-    <!--Global script-->
-    <script>
-        var test = 0;
-    </script>
+    
     <!-- script -->
     <script src="{% static '/script/map.js' %}"></script>
     <!--<script src="{% static '/script/minimap.js' %}"></script>-->
@@ -186,7 +208,7 @@
  Released under the MIT License.-->
 <script src="{% static '/script/vue.js' %} "></script>
 <script>
-    alert(test);
+
     var contents = new Vue({
         el: '#vueEvent',
         data: {
@@ -196,7 +218,7 @@
         },
         mounted: function() {
             axios
-                .get('http://127.0.0.1:443/map/')
+                .get('http://127.0.0.1:8000/map/')
 
             .then(function(response) {
                     contents.contentsLoaded = true
@@ -204,7 +226,6 @@
                 .catch(function(error) {
                     alert(error)
                 })
-
         },
         methods: {
             getGeo: function(event) {

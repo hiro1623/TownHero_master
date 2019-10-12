@@ -1,5 +1,6 @@
 
 import json
+from . import models
 from datetime import datetime
 from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -37,6 +38,7 @@ def map_TownHero(request):
     context = {
         "forms":form,
         "posts":PostData.objects.all(),
+        "location":models.Locate.objects.all(),
     }
     #ここまで
     return render(request, 'application.html',context)
