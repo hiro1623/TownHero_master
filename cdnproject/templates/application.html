@@ -6,6 +6,20 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <script>　// スマートフォンフルスクリーンモード解除対策
+      $(function(){
+          var aTags = $('a');
+          aTags.each(function(){ 
+              var url = $(this).attr('href');
+     　　 　   $(this).removeAttr('href');
+              $(this).click(function(){
+                  location.href = url;
+              });
+          });
+      });
+    </script>
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>Django Vue Integration</title>
     <!-- API -->
@@ -23,8 +37,8 @@
     </script>
     <!-- script -->
     <script src="{% static '/script/map.js' %}"></script>
-
-    <script src="{% static '/script/minimap.js' %}"></script>
+    <!--<script src="{% static '/script/minimap.js' %}"></script>-->
+    <script src="{% static '/script/postmap.js' %}"></script>
     <script src="{% static '/script/leaflet-simple-map-screenshoter.js' %}"></script>
     <!-- stylesheet-->
     <link rel="stylesheet" href="{% static '/css/menu.css'%}">
@@ -52,17 +66,17 @@
 
                 <!-- 上部menu表示部 ver.Hiro -->
                 <div class="menu_top">
-
                     <button type="button" v-on:click="contentActive = 'setting'">
-          <i class="fas fa-cogs"></i>
-        </button>
+                        <i class="fas fa-cogs"></i>
+                    </button>
                 </div>
 
             </header>
 
             <!-- app body -->
 
-            <form method="post">
+            <!--<form method="post">-->
+            <form action="{% url 'mapApp:map_TownHero' %}"  method = "post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div id="post" class="app_body" v-show="contentActive === 'post'">
                     <div class="area1">
@@ -72,25 +86,38 @@
 
                     <div class="area2">
                         <p class="post_label">投稿の属性</p>
-                        <select class="post_input" name="purpose">
-            <option value="災害情報">災害情報</option>
+                        <p class="post_input">
+                            {{forms.purpose}}
+                        </p>
+                        <!--<select class="post_input" name="purpose">
+                            <option value="災害情報">災害情報</option>
             <option value="救助依頼">救助依頼</option>
             <option value="落とし物">落としもの{{username.get}}</option>
-          </select>
+            </select>-->
                     </div>
                     <div class="area3">
-                        <p class="post_label">投稿本文
+                        <p class="post_label">投稿本文</p>
+                        <p class="post_input">
+                            {{forms.message}}
                         </p>
-                        <textarea class="post_input" name="message"></textarea>
+                        <!--<textarea class="post_input" name="message"></textarea>-->
                     </div>
                     <div class="area4">
                         <p class="post_label">投稿写真</p>
-                        <input class="post_input" type="file" name="pic" />
+                        <!--<input class="post_input" type="file" name="pic" />-->
+                        <p class="post_input">
+                            {{forms.pic}}
+                        </p>
                     </div>
                     <div class="area5">
-                        <div id="mapsScreeningState"></div>
+                        <p class="post_label_wide">位置情報</p>
+                        <div class="post_deteal">
+                            <p>投稿場所はここであっていますか？<br>変更したい場合は地図をタップしてください</p>
+                        </div>
+                        <div id="minimap"></div>
+                        <!-- <div id="mapsScreeningState"></div>
                         <div class="maps">
-                            <div>
+                            <div>hist
                                 <div id="mapSimple"></div>
                             </div>
                             <div>
@@ -99,7 +126,7 @@
                                 <button id="screenMapAndPast">Take screen and past to body</button>
                                 <div id="screens"></div>
                             </div>
-                        </div>
+                        </div> -->
 
                     </div>
                 </div>
@@ -111,7 +138,7 @@
                     {% for post in posts %} {%if user.get_username == post.user.username %}
                     <p>No.{{ post.id}}:{{ post.purpose }} {{ post.message }}</p>
                     <button v-on:click="deletePost({{post.id}})">投稿の削除</button> {%endif%}
-                    <img src="{{post.pic}}" /> {% endfor %}
+                    <img src="{{post.pic.url}}" /> {% endfor %}
                     <!-- ここまで -->
                 </div>
             </div>
@@ -159,7 +186,7 @@
  Released under the MIT License.-->
 <script src="{% static '/script/vue.js' %} "></script>
 <script>
-    alert(test)
+    alert(test);
     var contents = new Vue({
         el: '#vueEvent',
         data: {
@@ -169,7 +196,7 @@
         },
         mounted: function() {
             axios
-                .get('http://127.0.0.1:8000/map/')
+                .get('http://127.0.0.1:443/map/')
 
             .then(function(response) {
                     contents.contentsLoaded = true

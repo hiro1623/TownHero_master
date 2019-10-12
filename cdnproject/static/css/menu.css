@@ -1,4 +1,7 @@
 /***** menu.css *****/
+input[type="submit"]{
+    -webkit-appearance: none;
+}
 
 
 /* base */
@@ -9,7 +12,10 @@ body {
 }
 
 header {
-    position: relative;
+    width: 100%;
+    height: 20vw;
+    position: absolute;
+    top:0;
 }
 
 
@@ -77,34 +83,30 @@ header {
     position: fixed;
     z-index: 2;
 }
-
 .menu_btn {
     position: relative;
     color: rgba(50, 50, 50, 1);
-    font-size: 1px;
+    font-size: 10px;
     display: inline-block;
     background-color: rgba(1, 1, 1, 0);
     text-align: center;
     left: 5%;
-    width: 10%;
+    width: 13%;
     height: 100%;
     cursor: pointer;
     border-style: none;
 }
-
 .menu_btn_selected {
     color: #ffffff;
     background-color: rgba(150, 150, 150, 1.0);
 }
-
 .menu_btn_nonselect img {
     -webkit-filter: brightness(50%);
     filter: brightness(50%);
 }
-
 .menu_icon {
     display: inline-block;
-    position: left;
+    position: center;
     width: 25px;
     height: 25px;
 }
@@ -229,6 +231,25 @@ textarea.post_input {
     position: relative;
     width: 100%;
     height: 40%;
+    padding: 5px;
+}
+.area5 .post_label_wide {
+    position: relative;
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0px;
+    padding: 0px;
+}
+.area5 .post_deteal {
+    position: relative;
+    display: inline-block;
+    max-width: 40%;
+    height: 50;
+}
+.area5 .post_deteal p {
+    margin: auto 0;
+    color: gray;
 }
 
 
@@ -274,11 +295,19 @@ textarea.post_input {
 }
 
 #history {
+    position: absolute;
+    width: 85%;
+    height: 75%;
+    top: 50px;
+    right: 0;
+    left: 0;
+    margin: auto;
     overflow: auto;
     height: 50vw;
 }
 
 .histBox {
+    max-width: 100%;
     width: 100%;
     height: auto;
     max-height: 30%;
@@ -289,32 +318,7 @@ textarea.post_input {
     z-index: 0;
 }
 
-.histBox_cont {
-    display: inline-block;
-    width: 65%;
-}
-
-.histBox_cont_date {
-    display: block;
-    font-size: 20px;
-}
-
-.histBox_cont_msg {
-    display: block;
-    font-size: 12px;
-}
-
-.histBox_attr {
-    display: inline-block;
-    width: 30%;
-    text-align: center;
-}
-
-.histBox_attr_pin {
-    display: inline-block;
-}
-
-.histBox_attr_text {
-    display: block;
-    font-size: 12px;
+.histBox img {
+    width: auto;
+    max-height: 150px;
 }
