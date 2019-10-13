@@ -9,6 +9,7 @@ class PostData(models.Model):
     post_time = models.DateTimeField(auto_now_add=True)
     last_modify = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(User,verbose_name='ユーザー',on_delete=models.CASCADE)
+    post_flag = models.BooleanField(blank=True)
     def __str__(self):
         return self.purpose
 

@@ -14,6 +14,7 @@ from django.http import Http404
 def set_submit_token(request):
     submit_token = str(uuid.uuid4())
     request.session['submit_token'] = submit_token
+    print("Token1 :: "+str(submit_token))
     return submit_token
 
 def exists_submit_token(request):
@@ -25,25 +26,32 @@ def exists_submit_token(request):
         return False
     if not token_in_session:
         return False
-
     return token_in_request == token_in_session
 
 
 @login_required
 def map_TownHero(request):
     submit_token = set_submit_token(request)
-    print("Token1 :: "+str(submit_token))
     form = PostingForm(request.POST,request.FILES)
     context = {
+        "posts":PostData.objects.all(),
         "forms":form,
         "submit_token":submit_token,
+        "location":models.Locate.objects.all(),
     }
     return render(request, 'application.html',context)
 
 def post(request):
     if not exists_submit_token(request):
-        return render(request, 'application.html')
+        raise Http404('Dont Reload!!')
+        #form = PostingForm(request.POST,request.FILES)
+        #context = {
+        #"forms":form,
+        #"submit_token":submit_token,
+        #}
+        #return render(request, 'application.html')
     elif request.method == 'POST':
+        submit_token = set_submit_token(request)
         form = PostingForm(request.POST,request.FILES)
         if form.is_valid():
             post = PostData()
@@ -51,26 +59,41 @@ def post(request):
             post.message = form.cleaned_data['message']
             post.pic = form.cleaned_data['pic']
             post.user = request.user
+            #print("create postdata objects")
             PostData.objects.create(
                 purpose=post.purpose,
                 user=post.user,
                 message = post.message,
                 pic = post.pic,
+                post_flag = True,
             )
     context = {
         "forms":form,
         "posts":PostData.objects.all(),
         "location":models.Locate.objects.all(),
+        "submit_token":submit_token,
     }
     return render(request, 'application.html', context)
 
 def delete(request):
+    submit_token = set_submit_token(request)
+    form = PostingForm(request.POST,request.FILES)
+    context = {
+        "forms":form,
+        "posts":PostData.objects.all(),
+        "location":models.Locate.objects.all(),
+        "submit_token":submit_token,
+    }
+    #print("Delete")
     if request.method == 'POST' and request.body:
-        json_dict = json.loads(request.body)
-        id = json_dict['id']
+        id = request.POST.get("id")
+        print(id)
         post = PostData.objects.get(id=id)
-    post.delete()
-    return render(request, 'application.html')
+        #print("post.post_flag = " + str(post.post_flag))
+        post.post_flag = False
+        #print("post.post_flag = " + str(post.post_flag))
+        post.save()
+    return render(request, 'application.html',context)
 
 
 def geo(request):
@@ -79,5 +102,4 @@ def geo(request):
         lat = json_dict['lat']
         lng = json_dict['lng']
         Locate.objects.create(lat=lat,lng=lng)
-
     return render(request, 'application.html')

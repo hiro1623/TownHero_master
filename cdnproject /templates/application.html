@@ -144,18 +144,24 @@
             </form>
 
             <div id="history" class="app_body" v-show="contentActive === 'history'">
-                {% for post in posts %} {%if user.get_username == post.user.username %}
+                {% for post in posts %} 
+                {% if user.get_username == post.user.username and post.post_flag == True %}
+                
                 <div class="histBox">
                     <div class="upbar">
                         <B>{{ post.post_time }}</B>
-                        <button v-on:click="deletePost({{post.id}})">投稿の削除</button>
+                        <p>{{post.post_flag}}</p>
+                        <form action="{% url 'mapApp:delete' %}"  method = "post" >
+                        {% csrf_token %}
+                        <button name = "id" value="{{post.id}}">終了する？</button>
+                        </form>
                     </div>
                     <div class="downbar">
                         <div class="downbar_left">
                             <p>{{ post.message }}<br>(属性：{{ post.purpose }})</p>
                         </div>
                         <div class="downbar_right">
-                            {%if post.purpose == "SOS" %}
+                            {% if post.purpose == "SOS" %}
                                 <img src="{%static '/images/pin/pin_red.png' %}" /> 
                             {% elif post.purpose == "災害情報" %}
                                 <img src="{%static '/images/pin/pin_blue.png' %}" /> 
@@ -169,7 +175,8 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}{% endfor %}
+                {% endif %}
+                {% endfor %}
             </div>
             <div id="setting" class="app_body" v-show="contentActive === 'setting'">
                 <a href="{% url 'logout' %}">
