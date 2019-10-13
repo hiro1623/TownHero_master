@@ -60,7 +60,7 @@ function main() {
                             shadowUrl: '/static/images/pin/pin_shadow.png',
                             iconSize: [55,55], shadowSize:[100,50],
                             iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup(posted_data[i].post_time + "<br>" + photo_picture + "<br>"+posted_data[i].message).addTo(map);
+                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
                     }else if(posted_data[i].purpose == '災害情報'){
                         console.log("災害")
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
@@ -68,7 +68,7 @@ function main() {
                             shadowUrl: '/static/images/pin/pin_shadow.png',
                             iconSize: [55,55], shadowSize:[100,50],
                             iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup(posted_data[i].post_time + "<br>" + photo_picture + "<br>"+posted_data[i].message).addTo(map);
+                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
                     }else if(posted_data[i].purpose == '落し物'){
                         console.log("落とし物2")
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
@@ -76,7 +76,7 @@ function main() {
                             shadowUrl: '/static/images/pin/pin_shadow.png',
                             iconSize: [55,55], shadowSize:[100,50],
                             iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup(posted_data[i].post_time + "<br>" + photo_picture + "<br>"+posted_data[i].message).addTo(map);
+                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
                     }else if(posted_data[i].purpose == '人探し'){
                         console.log("人探し")
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
@@ -84,7 +84,7 @@ function main() {
                             shadowUrl: '/static/images/pin/pin_shadow.png',
                             iconSize: [55,55], shadowSize:[55,55],
                             iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup(posted_data[i].post_time + "<br>" + photo_picture + "<br>"+posted_data[i].message).addTo(map);
+                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
                     }else if(posted_data[i].purpose == 'その他'){
                         console.log("その他")
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
@@ -92,7 +92,7 @@ function main() {
                             shadowUrl: '/static/images/pin/pin_shadow.png',
                             iconSize: [55,55], shadowSize:[100,50],
                             iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup(posted_data[i].post_time + "<br>" + photo_picture + "<br>"+posted_data[i].message).addTo(map);
+                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
                     }
                 } else {
                     console.log("else")
