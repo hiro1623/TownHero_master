@@ -42,7 +42,7 @@ def map_TownHero(request):
 
 def post(request):
     if not exists_submit_token(request):
-        raise Http404("Question does not exist")
+        return render(request, 'application.html')
     elif request.method == 'POST':
         form = PostingForm(request.POST,request.FILES)
         if form.is_valid():
