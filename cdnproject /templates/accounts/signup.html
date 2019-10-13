@@ -23,6 +23,11 @@
         <!-- {{ form.as_p }} -->
         <ul><li>ユーザー名は15文字以内で設定可能です</li></ul>
         <div class="post_form">
+          {% if form.username.errors %}
+            {% for error in form.username.errors %}
+              {{error}}
+            {% endfor %}
+          {% endif %}
           <input type="text" name="username" placeholder="ユーザー名" maxlength="15" autofocus required id="id_username">
         </div>
         <ul>
@@ -31,6 +36,11 @@
             <li>ユーザー名に似たパスワードは使用できません</li>
           </ul>
         <div class="post_form">
+          {% if form.password2.errors %}
+            {% for error in form.password2.errors %}
+              {{error}}
+            {% endfor %}
+          {% endif %}
           <input type="password" name="password1" placeholder="パスワード" required id="id_password1">
           <input type="password" name="password2" placeholder="パスワードの再入力" required id="id_password2">
         </div>

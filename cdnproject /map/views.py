@@ -61,6 +61,7 @@ def post(request):
         "forms":form,
         "posts":PostData.objects.all(),
         "location":models.Locate.objects.all(),
+        "submit_token":submit_token,
     }
     return render(request, 'application.html', context)
 

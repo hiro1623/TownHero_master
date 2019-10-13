@@ -6,6 +6,6 @@ urlpatterns = [
     path('', views.map_TownHero, name='map_TownHero'),
     path('geo/', views.geo, name='geo'),
     path('delete/', views.delete, name='delete'),
-     path('post/', views.post, name='post'),
+    path('post/', views.post, name='post'),
 
 ]
