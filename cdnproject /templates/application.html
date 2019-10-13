@@ -7,7 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <link rel="apple-touch-icon" href="{% static '/images/home.png' %}">
     <meta name="mobile-web-app-capable" content="yes" />
     <link rel="icon" href="<%= BASE_URL %>favicon.ico">
     <title>TOWN HERO</title>
@@ -53,7 +52,6 @@
     <script src="{% static '/script/map.js' %}"></script>
     <script src="{% static '/script/fullscreen.js' %}"></script>
     <!--<script src="{% static '/script/minimap.js' %}"></script>-->
-    <script src="{% static '/script/postmap.js' %}"></script>
     <script src="{% static '/script/leaflet-simple-map-screenshoter.js' %}"></script>
     <!-- stylesheet-->
     <link rel="stylesheet" href="{% static '/css/menu.css'%}">
@@ -95,7 +93,7 @@
                 <div id="post" class="app_body" v-show="contentActive === 'post'">
                     <div class="area1">
                         <button class="post_reset" type="reset">リセット</button>
-                        <button v-on:click="getGeo" class="post_send" type="submit" name="submit_token" value="{{submit_token}}">送信</button>
+                        <button v-on:click="sendLocation" class="post_send" type="submit" name="submit_token" value="{{submit_token}}">送信</button>
                     </div>
                     <div class="area2">
                         <p class="post_label">投稿属性</p>
@@ -222,6 +220,8 @@
         data: {
             contentActive: 'map',
             contentsLoaded: false,
+            lat: 0,
+            lng: 0,
             id: 0,
         },
         mounted: function() {
@@ -237,18 +237,14 @@
 
         },
         methods: {
-            getGeo: function(event) {
-                navigator.geolocation.getCurrentPosition(function succes_func(position) {
-                    var data = position.coords;
-                    var lat = data.latitude;
-                    var lng = data.longitude;
+            sendLocation: function(event) {
                     var csrftoken = Cookies.get('csrftoken');
                     var headers = {
                         'X-CSRFToken': csrftoken
                     };
                     var data = {
-                        "lat": lat,
-                        "lng": lng,
+                        "lat": contents.lat,
+                        "lng": contents.lng,
                     };
                     axios
                         .post("{% url 'mapApp:geo' %} ", data, {
@@ -258,8 +254,6 @@
                         .catch(error => {
                             alert("getgeoError!!")
                         })
-                });
-
             },
             deletePost: function(id) {
                 var csrftoken = Cookies.get('csrftoken');
@@ -281,5 +275,39 @@
             }
 
         }
+    });
+
+    navigator.geolocation.getCurrentPosition(function succes_func(position) {
+        //lat:緯度　lng:経度
+        alert("1:" + "1")
+        alert("2:" + contents.lat)
+        contents.lat = position.coords.latitude;
+        contents.lng = position.coords.longitude;
+        alert("3:" + contents.lat)
+        var intpoint = [contents.lat, contents.lng];
+        // var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
+        var osm = L.tileLayer('/static/osm/{z}/{x}/{y}.png');
+
+        var minimap = L.map('minimap', {
+            layers: [osm],
+            center: intpoint,
+            maxZoom: 15,
+            minZoom: 15,
+            zoom: 15,
+            zoomControl: false
+        });
+
+        var targetPlace = L.marker([contents.lat, contents.lng]);
+        targetPlace.addTo(minimap);
+
+        minimap.on('click', function(e) {
+            // クリック位置経緯度取得
+            contents.lat = e.latlng.lat;
+            contents.lng = e.latlng.lng;
+            alert("4:" + contents.lat)
+            alert("5:" + 1)
+            minimap.removeLayer(targetPlace);
+            targetPlace = L.marker([contents.lat, contents.lng]).addTo(minimap);
+        });
     });
 </script>
