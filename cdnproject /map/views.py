@@ -44,6 +44,7 @@ def post(request):
     if not exists_submit_token(request):
         return render(request, 'application.html')
     elif request.method == 'POST':
+        submit_token = set_submit_token(request)
         form = PostingForm(request.POST,request.FILES)
         if form.is_valid():
             post = PostData()
