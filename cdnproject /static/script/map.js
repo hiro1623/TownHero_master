@@ -64,7 +64,7 @@ function main() {
                             iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
                         }) }).bindPopup(posted_data[i].post_time + "<br>" + "<img src=" +posted_data[i].pic+ ">" + "<br>"+posted_data[i].message).addTo(map);
                     }else if(posted_data[i].purpose == '落し物'){
-                        console.log("落とし物2")
+                        console.log("落し物2")
                         L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
                             iconUrl: '/static/images/pin/pin_green.png',
                             shadowUrl: '/static/images/pin/pin_shadow.png',
