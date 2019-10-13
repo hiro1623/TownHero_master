@@ -41,69 +41,63 @@ function main() {
             L.marker(mpoint, { icon: pulsingIcon }).addTo(map);
 
             //L.simpleMapScreenshoter().addTo(map)
-
-
-            // [TEST-01] 投稿表示機能 [日時, userID, 属性, 緯度, 経度, 投稿内容]
-            for (var i = 0; i < 100; i++) {
-                var photo_picture
-                if(posted_data[i].pic != ""){
-                    photo_picture = "<img src=" + posted_data[i].pic+ ">"
-                }else{
-                    photo_picture = ""
-                }
-                if (0.50 >= distance(lat, lng, posted_data[i].lat, posted_data[i].lng)) {
-                    console.log(posted_data[i].purpose)
-                    if(posted_data[i].purpose == "SOS"){
-                        console.log(posted_data[i].pic)
-                        L.marker([posted_data[i].lat,posted_data[i].lng], {icon: L.icon({ 
-                            iconUrl: '/static/images/pin/pin_red.png',
-                            shadowUrl: '/static/images/pin/pin_shadow.png',
-                            iconSize: [55,55], shadowSize:[100,50],
-                            iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
-                    }else if(posted_data[i].purpose == '災害情報'){
-                        console.log("災害")
-                        L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
-                            iconUrl: '/static/images/pin/pin_blue.png',
-                            shadowUrl: '/static/images/pin/pin_shadow.png',
-                            iconSize: [55,55], shadowSize:[100,50],
-                            iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
-                    }else if(posted_data[i].purpose == '落し物'){
-                        console.log("落し物2")
-                        L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
-                            iconUrl: '/static/images/pin/pin_green.png',
-                            shadowUrl: '/static/images/pin/pin_shadow.png',
-                            iconSize: [55,55], shadowSize:[100,50],
-                            iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
-                    }else if(posted_data[i].purpose == '人探し'){
-                        console.log("人探し")
-                        L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
-                            iconUrl: '/static/images/pin/pin_yellow.png',
-                            shadowUrl: '/static/images/pin/pin_shadow.png',
-                            iconSize: [55,55], shadowSize:[55,55],
-                            iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
-                    }else if(posted_data[i].purpose == 'その他'){
-                        console.log("その他")
-                        L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
-                            iconUrl: '/static/images/pin/pin_pink.png',
-                            shadowUrl: '/static/images/pin/pin_shadow.png',
-                            iconSize: [55,55], shadowSize:[100,50],
-                            iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
-                        }) }).bindPopup('<div ><B>' + posted_data[i].purpose + '>'  + "<br>"  + "<br>"+posted_data[i].message + photo_picture + posted_data[i].post_time).addTo(map);
-                    }
-                } else {
-                    console.log("else")
-                    L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
-                        iconUrl: '/static/images/pin/pin_gray.png',
-                        shadowUrl: '/static/images/pin/pin_shadow.png',
-                        iconSize: [55,55], shadowSize:[100,50],
-                        iconAnchor: [27,55], shadowAnchor: [35,30]
-                    }) }).addTo(map);
-                    }
+// [TEST-01] 投稿表示機能 [日時, userID, 属性, 緯度, 経度, 投稿内容]
+for (var i = 0; i < 100; i++) {
+    if(posted_data[i].post_flag == "True"){
+        if (0.50 >= distance(lat, lng, posted_data[i].lat, posted_data[i].lng)) {
+            console.log(posted_data[i].purpose)
+            if(posted_data[i].purpose == "SOS"){
+                console.log(posted_data[i].pic)
+                L.marker([posted_data[i].lat,posted_data[i].lng], {icon: L.icon({ 
+                    iconUrl: '/static/images/pin/pin_red.png',
+                    shadowUrl: '/static/images/pin/pin_shadow.png',
+                    iconSize: [55,55], shadowSize:[100,50],
+                    iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
+                }) }).bindPopup(posted_data[i].post_time + "<br>" + "<img src=" +posted_data[i].pic+ ">" + "<br>"+posted_data[i].message).addTo(map);
+            }else if(posted_data[i].purpose == '災害情報'){
+                console.log("災害")
+                L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
+                    iconUrl: '/static/images/pin/pin_blue.png',
+                    shadowUrl: '/static/images/pin/pin_shadow.png',
+                    iconSize: [55,55], shadowSize:[100,50],
+                    iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
+                }) }).bindPopup(posted_data[i].post_time + "<br>" + "<img src=" +posted_data[i].pic+ ">" + "<br>"+posted_data[i].message).addTo(map);
+            }else if(posted_data[i].purpose == '落し物'){
+                console.log("落とし物2")
+                L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
+                    iconUrl: '/static/images/pin/pin_green.png',
+                    shadowUrl: '/static/images/pin/pin_shadow.png',
+                    iconSize: [55,55], shadowSize:[100,50],
+                    iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
+                }) }).bindPopup(posted_data[i].post_time + "<br>" + "<img src=" +posted_data[i].pic+ ">" + "<br>"+posted_data[i].message).addTo(map);
+            }else if(posted_data[i].purpose == '人探し'){
+                console.log("人探し")
+                L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
+                    iconUrl: '/static/images/pin/pin_yellow.png',
+                    shadowUrl: '/static/images/pin/pin_shadow.png',
+                    iconSize: [55,55], shadowSize:[55,55],
+                    iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
+                }) }).bindPopup(posted_data[i].post_time + "<br>" + "<img src=" +posted_data[i].pic+ ">" + "<br>"+posted_data[i].message).addTo(map);
+            }else if(posted_data[i].purpose == 'その他'){
+                console.log("その他")
+                L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
+                    iconUrl: '/static/images/pin/pin_pink.png',
+                    shadowUrl: '/static/images/pin/pin_shadow.png',
+                    iconSize: [55,55], shadowSize:[100,50],
+                    iconAnchor: [27,55], shadowAnchor: [35,30], popupAnchor: [0,-35]
+                }) }).bindPopup(posted_data[i].post_time + "<br>" + "<img src=" +posted_data[i].pic+ ">" + "<br>"+posted_data[i].message).addTo(map);
             }
+        } else {
+            console.log("else")
+            L.marker([posted_data[i].lat,posted_data[i].lng], { icon: L.icon({
+                iconUrl: '/static/images/pin/pin_gray.png',
+                shadowUrl: '/static/images/pin/pin_shadow.png',
+                iconSize: [55,55], shadowSize:[100,50],
+                iconAnchor: [27,55], shadowAnchor: [35,30]
+            }) }).addTo(map);
+        }
+    }
+}
 
 
             // 内部関数

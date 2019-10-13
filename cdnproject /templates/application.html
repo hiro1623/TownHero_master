@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{% static '/api/L.Icon.Pulse.leaflet-control-layers-separator' %}">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin="">
+    
     <!--Global values-->
     <script>
         var posted_data = [
@@ -32,6 +33,7 @@
             purpose: "",
             message: "",
             post_time: "",
+            post_flag:"",
             pic:"",
         }
         {% endfor %}
@@ -41,11 +43,12 @@
     {% for post in posts %}
         posted_data[{{post.id}}-1].purpose='{{post.purpose}}';
         posted_data[{{post.id}}-1].message='{{post.message}}';
+        posted_data[{{post.id}}-1].post_flag="{{post.post_flag}}";
         posted_data[{{post.id}}-1].post_time='<B>{{post.post_time|date:"SHORT_DATE_FORMAT"}}</B>';
         {% if post.pic%}
             posted_data[{{post.id}}-1].pic='{{post.pic.url}}';
         {%endif%}
-     console.log(posted_data[{{post.id}}-1]);
+     console.log(posted_data[{{post.id}}-1].post_flag);
     {%endfor%}
     </script>
     <!-- script -->
@@ -286,12 +289,10 @@
 
     navigator.geolocation.getCurrentPosition(function succes_func(position) {
         //lat:緯度　lng:経度
-        alert("1:" + "1")
-        alert("2:" + contents.lat)
         contents.lat = position.coords.latitude;
         contents.lng = position.coords.longitude;
-        alert("3:" + contents.lat)
-        var intpoint = [contents.lat, contents.lng];
+     
+        var intpoint = [contents.lat+0.0022, contents.lng-0.0026];
         // var osm = L.tileLayer('https://tile.openstreetmap.jp/{z}/{x}/{y}.png', { attribution: "<a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> " });
         var osm = L.tileLayer('/static/osm/{z}/{x}/{y}.png');
 
