@@ -33,6 +33,7 @@
             purpose: "",
             message: "",
             post_time: "",
+            pic:"",
         }
         {% endfor %}
     ];
@@ -41,8 +42,11 @@
     {% for post in posts %}
         posted_data[{{post.id}}-1].purpose='{{post.purpose}}';
         posted_data[{{post.id}}-1].message='{{post.message}}';
-        posted_data[{{post.id}}-1].post_time='{{post.post_time}}';
-        console.log(posted_data[{{post.id}}-1]);
+        posted_data[{{post.id}}-1].post_time='<B>{{post.post_time|date:"SHORT_DATE_FORMAT"}}</B>';
+        {% if post.pic%}
+            posted_data[{{post.id}}-1].pic='{{post.pic.url}}';
+        {%endif%}
+     console.log(posted_data[{{post.id}}-1]);
     {%endfor%}
     </script>
     <!-- script -->
