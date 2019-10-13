@@ -3,21 +3,8 @@
   <head>
     <meta charset="UTF-8">
     <title>TOWN HERO SIGNUP</title>
-    <!--
-    <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="mobile-web-app-capable" content="yes" />
-    <script>　// スマートフォンフルスクリーンモード解除対策
-      $(function(){
-          var aTags = $('a');
-          aTags.each(function(){ 
-              var url = $(this).attr('href');
-     　　 　   $(this).removeAttr('href');
-              $(this).click(function(){
-                  location.href = url;
-              });
-          });
-      });
-    </script>-->
+    <script src="{% static '/api/jquery-3.4.1.js' %}"></script>
+    <script src="{% static '/script/fullscreen.js' %}"></script>
     <!-- stylesheet -->
     <link rel="stylesheet" href="{% static '/css/signup.css' %}">
   </head>

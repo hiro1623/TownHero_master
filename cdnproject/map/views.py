@@ -1,6 +1,5 @@
-
-import json
 from . import models
+import json
 from datetime import datetime
 from django.http.response import HttpResponse
 from django.contrib.auth.decorators import login_required
@@ -17,23 +16,24 @@ def map_TownHero(request):
     form = PostingForm(request.POST,request.FILES)
 
     if request.method == 'POST':
-        if form.is_valid():
-            #print("test if(3)")
-            post = PostData()
-            post.purpose = form.cleaned_data['purpose']
-            post.message = form.cleaned_data['message']
-            post.pic = form.cleaned_data['pic']
+        #if models.Locate.objects.all().count() == models.PostData.objects.all().count():
+            if form.is_valid():
+                #print("test if(3)")
+                post = PostData()
+                post.purpose = form.cleaned_data['purpose']
+                post.message = form.cleaned_data['message']
+                post.pic = form.cleaned_data['pic']
             
             #post = form.save(commit=False)
-            post.user = request.user
+                post.user = request.user
 
             
-            PostData.objects.create(
-                purpose=post.purpose,
-                user=post.user,
-                message = post.message,
-                pic = post.pic,
-            )
+                PostData.objects.create(
+                    purpose=post.purpose,
+                    user=post.user,
+                    message = post.message,
+                    pic = post.pic,
+                )
 
     context = {
         "forms":form,

@@ -28,5 +28,6 @@ class PostingForm(forms.Form):
         )
         pic = forms.ImageField(
             label='写真',
+            required=False,
         )
 

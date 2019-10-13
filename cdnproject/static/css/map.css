@@ -92,8 +92,8 @@ a.leaflet-popup-close-button {
 }
 
 .leaflet-popup-content-wrapper {
-    border-width: 3px;
-    border-style: solid;
+    font-size: 16px;
+    opacity: 0.9;
 }
 
 .leaflet-popup-tip-container {
@@ -102,6 +102,4 @@ a.leaflet-popup-close-button {
 }
 
 .leaflet-popup-tip {
-    border-style: solid;
-    border-width: 0 3px 3px 0;
 }

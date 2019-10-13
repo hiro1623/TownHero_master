@@ -7,6 +7,7 @@ input[type="submit"]{
 /* base */
 
 body {
+    font-family: sans-serif;
     margin: 0px;
     padding: 0px;
 }
@@ -51,8 +52,8 @@ header {
 
 .menu_top {
     position: absolute;
-    top: 4vw;
-    right: 4vw;
+    top: 3vw;
+    right: 3vw;
     z-index: 1;
     border: 0;
 }
@@ -68,7 +69,7 @@ header {
 }
 
 .menu_top>button>i {
-    font-size: 5em;
+    font-size: 3em;
     color: gray;
 }
 
@@ -133,23 +134,30 @@ header {
     color: rgba(0, 138, 255, 1);
     text-align: left;
     padding: 3px;
-    background-color: rgba(255, 255, 255, 0.8);
-    font-size: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-size: 12px;
 }
 
 .post_label {
+    line-height: 100%;
+    left: 5px;
     display: inline-block;
     position: absolute;
     width: 20%;
 }
 
 .post_input {
+    top: 5px;
+    line-height: 100%;
     display: inline-block;
     position: absolute;
-    width: 70%;
-    top: 0;
-    bottom: 0;
     margin: auto auto auto 20%;
+    background-color: rgba(0,0,0,0);
+}
+.post_input textarea {
+    max-width: 80%;
+    border: none;
+    background-color: rgba(0,0,0,0);
 }
 
 .area1 {
@@ -173,6 +181,8 @@ button.post_reset {
     font-size: 18px;
     letter-spacing: 0px;
     color: rgba(0, 138, 255, 1.0);
+    background-color: rgba(0,0,0,0);
+    border: none;
 }
 
 button.post_reset:active {
@@ -189,6 +199,8 @@ button.post_send {
     z-index: 100;
     font-size: 18px;
     letter-spacing: 0px;
+    background-color: rgba(0,0,0,0);
+    border: none;
     color: rgba(0, 138, 255, 1.0);
 }
 
@@ -233,7 +245,13 @@ textarea.post_input {
     height: 40%;
     padding: 5px;
 }
+.area5 .lefttext {
+    display: inline-block;
+    width: 50%;
+    height: 100%;
+}
 .area5 .post_label_wide {
+    top: 0;
     position: relative;
     display: block;
     width: 100%;
@@ -241,15 +259,20 @@ textarea.post_input {
     margin: 0px;
     padding: 0px;
 }
+
 .area5 .post_deteal {
-    position: relative;
-    display: inline-block;
-    max-width: 40%;
-    height: 50;
-}
-.area5 .post_deteal p {
     margin: auto 0;
-    color: gray;
+    color: rgba(75,75,75,1);
+    margin: 0px;
+    padding: 0px;
+}
+.area5 #minimap {
+    display: inline-block;
+    width: 30vW;
+    height: 30vw;
+}
+.area5 .leaflet-tile {
+    visibility: visible;
 }
 
 
@@ -296,29 +319,56 @@ textarea.post_input {
 
 #history {
     position: absolute;
-    width: 85%;
-    height: 75%;
-    top: 50px;
+    width: 85vw;
+    height: 75vh;
+    top: 0;
     right: 0;
     left: 0;
+    bottom: 0;
     margin: auto;
     overflow: auto;
-    height: 50vw;
+    font-family: sans-serif;
 }
 
 .histBox {
-    max-width: 100%;
+    max-width: 78vw;
     width: 100%;
     height: auto;
-    max-height: 30%;
     border-radius: 10px;
-    margin: 3px;
-    padding: 10px;
+    margin: 3px 0;
+    padding: 5px;
     background-color: rgba(255, 255, 255, 0.8);
     z-index: 0;
 }
-
-.histBox img {
-    width: auto;
-    max-height: 150px;
+.histBox .upbar {
+    display: block;
+    width: 100%;
+    margin: 15px;
+}
+.histbox .upbar button {
+    display: inline-block;
+    right: 0;
+}
+.histBox .downbar {
+    display: block;
+    width: 100%;
+    margin: 10px;
+}
+.histBox .downbar_left {
+    display: inline-block;
+    width: 40vw;
+    font-size: 14px;
+    vertical-align: top;
+}
+.histBox .downbar_right {
+    display: inline-block;
+    width: 35vw;
+    height: 30vw;
+    text-align: center;
+    vertical-align: top;
+}
+.histBox .downbar img {
+    display: inline-block;
+    max-width: 20vw;
+    max-height: 20vw;
 }
