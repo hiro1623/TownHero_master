@@ -90,14 +90,13 @@
             <!-- app body -->
 
             <!--<form method="post">-->
-            <form action="{% url 'mapApp:map_TownHero' %}"  method = "post" enctype="multipart/form-data">
+            <form action="{% url 'mapApp:post' %}"  method = "post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div id="post" class="app_body" v-show="contentActive === 'post'">
                     <div class="area1">
                         <button class="post_reset" type="reset">リセット</button>
-                        <button v-on:click="getGeo" class="post_send" type="submit">送信</button>
+                        <button v-on:click="getGeo" class="post_send" type="submit" name="submit_token" value="{{submit_token}}">送信</button>
                     </div>
-
                     <div class="area2">
                         <p class="post_label">投稿属性</p>
                         <p class="post_input">
